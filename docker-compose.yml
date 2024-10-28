@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  activemq:
+    image: rmohr/activemq
+    container_name: activemq
+    ports:
+      - "61616:61616"     # Port for the JMS protocol
+      - "8161:8161"       # Port for the ActiveMQ web console
+    networks:
+      - app-network
+
+  spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: message-service:2.0    # Replace with the name of your Spring Boot app image
+    #image: stutishrivastava/msgvalidationservice:latest
+    container_name: spring-app
+    environment:
+      - SPRING_ACTIVEMQ_BROKER_URL=tcp://activemq:61616
+    depends_on:
+      - activemq
+    ports:
+      - "8181:8181"  # Expose the application on port 8080
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
