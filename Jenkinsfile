@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Run any tests
-                sh "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
+                bat "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
                 echo 'Build completed...'
             }
         }
@@ -20,7 +20,7 @@ pipeline {
                     steps {
                         script {
                             // Build the image using Docker Compose
-                            //sh "docker-compose -f ${DOCKER_COMPOSE_FILE} build"
+                            //bat "docker-compose -f ${DOCKER_COMPOSE_FILE} build"
                             echo 'Testing...'
                         }
                     }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script {
                     // Tag and push the Docker image
-                    sh "docker-compose -f ${DOCKER_COMPOSE_FILE} push"
+                    bat "docker-compose -f ${DOCKER_COMPOSE_FILE} push"
                     echo 'Push Image...'
                 }
             }
@@ -49,7 +49,7 @@ pipeline {
     post {
         always {
             // Bring down the Docker Compose services and clean up
-            sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down"
+            bat "docker-compose -f ${DOCKER_COMPOSE_FILE} down"
             echo 'Completed...'
         }
     }
