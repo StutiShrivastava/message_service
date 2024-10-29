@@ -11,23 +11,23 @@ pipeline {
                 git 'https://github.com/StutiShrivastava/message_service.git'
             }
         }
-        stage('Test') {
-                    steps {
-                        script {
-                            // Executing Unit Test
-                            echo 'Executing Test...'
-                            bat "mvn test"
-                        }
-                    }
-        }
         stage('Build & Deploy') {
-                    steps {
-                        // Build & Deploy
-                        echo 'Executing Build...'
-                        bat "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
-                        echo 'Build & Deployment Completed...'
-                    }
-                }
+             steps {
+                  // Build & Deploy
+                  echo 'Executing Build...'
+                  bat "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
+                  echo 'Build & Deployment Completed...'
+             }
+        }
+        stage('Test') {
+              steps {
+                   script {
+                        // Executing Unit Test
+                        echo 'Executing Test...'
+                        bat "mvn test"
+                   }
+              }
+        }
         stage('Push Image to Registry') {
             when {
                 expression {
