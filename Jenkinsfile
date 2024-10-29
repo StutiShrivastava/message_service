@@ -29,11 +29,6 @@ pipeline {
               }
         }
         stage('Push Image to Registry') {
-            when {
-                expression {
-                    return env.BRANCH_NAME == 'main' || env.BRANCH_NAME == 'master'
-                }
-            }
             steps {
                 script {
                     // Tag and push the Docker image
