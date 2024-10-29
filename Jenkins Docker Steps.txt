@@ -1,0 +1,36 @@
+docker run -d --name activemq -p 8161:8161 -p 61616:61616 rmohr/activemq
+
+docker pull jenkins/jenkins:lts
+
+docker run -d --name jenkins -p 8282:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+docker logs jenkins  // to get the password
+
+PWD :   0f0437e12b314a6e9c50002a612eac26
+
+plugins installed
+Use the search bar to find the following essential plugins for pipelines:
+Pipeline (this is the core plugin for pipeline functionality)
+Pipeline: Stage View Plugin (for visualizing pipeline stages)
+Pipeline: Declarative (enables the declarative pipeline syntax)
+Pipeline: Groovy (provides Groovy support for scripted pipelines)
+Git Plugin (if you want to pull Jenkinsfile scripts from a Git repository)
+Credentials Binding Plugin (for securely using credentials within pipelines)
+
+
+docker run -d --name jenkins -p 8282:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home \
+   -e JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dhttps.protocols=TLSv1.2 -Djava.net.preferIPv4Stack=true -Dhudson.model.DownloadService.skipSignatureCheck=true" \
+   jenkins/jenkins:lts
+   
+   
+docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -e JAVA_OPTS="-Djenkins.install.runSetupWizard=false -Dhttps.protocols=TLSv1.2 -Djava.net.preferIPv4Stack=true -Dhudson.model.DownloadService.skipSignatureCheck=true" jenkins/jenkins:lts
+
+
+
+docker run -d --name jenkins -p 8282:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -e JAVA_OPTS="-Dhudson.model.DownloadService.skipSignatureCheck=true" jenkins/jenkins:lts
+
+
+docker run -d --name jenkins -p 8383:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home my-jenkins  # Run the new container
+
+
+0f0437e12b314a6e9c50002a612eac26

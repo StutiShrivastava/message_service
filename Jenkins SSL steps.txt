@@ -1,0 +1,54 @@
+# Export certificate from the update site (Linux/Mac)
+echo -n | openssl s_client -connect updates.jenkins.io:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > jenkins-update-site-cert.crt
+
+# Import certificate into Java's default keystore
+docker cp jenkins-update-site-cert.crt jenkins:/tmp/jenkins-update-site-cert.crt
+docker exec -it jenkins bash
+keytool -import -trustcacerts -alias jenkins-update-site -keystore /etc/ssl/certs/java/cacerts -file /tmp/jenkins-update-site-cert.crt -storepass changeit -noprompt
+
+
+keytool -import -trustcacerts -alias jenkins-update-site -keystore "%JAVA_HOME%\lib\security\cacerts" -file "C:\Users\a5143522\Stuti\updates.jenkins.io.crt" -storepass changeit
+
+
+Step 1: Download the Certificate Manually
+Open a Web Browser:
+
+Navigate to https://updates.jenkins.io.
+Click on the padlock icon in the address bar (this may vary based on your browser).
+View Certificate:
+
+Click on Certificate or Connection is secure to view the certificate information.
+Go to the Details tab and click on Copy to File.
+Export the Certificate:
+
+Choose the format (usually DER encoded binary or Base-64 encoded X.509).
+Save the certificate file (e.g., jenkins-update-site-cert.crt).
+Step 2: Import the Certificate into the Java Keystore
+Open Command Prompt (as Administrator):
+
+Press Win + X and select Windows PowerShell (Admin) or Command Prompt (Admin).
+Find the Java keytool Utility:
+
+Navigate to your Java installation directory. Typically, it might be in a path like:
+makefile
+Copy code
+C:\Program Files\Java\jdk<version>\bin
+Import the Certificate:
+
+Run the following command to import the certificate into the Java keystore. Make sure to adjust the paths accordingly:
+bash
+Copy code
+keytool -import -trustcacerts -alias jenkins-update-site -keystore "%JAVA_HOME%\lib\security\cacerts" -file "C:\path\to\your\jenkins-update-site-cert.crt" -storepass changeit
+Replace C:\path\to\your\jenkins-update-site-cert.crt with the actual path where you saved the certificate.
+If prompted, confirm the addition of the certificate.
+Step 3: Restart Jenkins
+
+
+-Djavax.net.ssl.trustStore=C:\Users\a5143522\Java\openjdk-17.0.9\lib\security
+-Djavax.net.ssl.trustStorePassword=changeit
+
+
+java -Djavax.net.debug=ssl SSLPoke DEU-5CG2232PP1.adwin.renesas.com:8383
+
+
+C:\Users\a5143522>keytool -import -trustcacerts -alias jenkins-update-site -keystore "%JAVA_HOME%\lib\security\cacerts" -file "C:\Users\a5143522\Stuti\updates.jenkins.io.crt" -storepass changeit

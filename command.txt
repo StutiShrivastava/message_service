@@ -1,0 +1,231 @@
+Microsoft Windows [Version 10.0.19045.5011]
+(c) Microsoft Corporation. All rights reserved.
+0beba5342d974a60972e69999dde723e
+
+C:\WINDOWS\system32>docker ps
+CONTAINER ID   IMAGE               COMMAND                  CREATED              STATUS          PORTS                 NAMES
+454fd9a851f1   my-jenkins:latest   "/usr/bin/tini -- /u…"   About a minute ago   Up 59 seconds   8080/tcp, 50000/tcp   eloquent_babbage
+
+C:\WINDOWS\system32>docker stop my-jenkins
+Error response from daemon: No such container: my-jenkins
+
+
+C:\WINDOWS\system32>docker stop eloquent_babbage
+eloquent_babbage
+
+C:\WINDOWS\system32>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\WINDOWS\system32>docker rm eloquent_babbage
+eloquent_babbage
+
+C:\WINDOWS\system32>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\WINDOWS\system32>docker images
+REPOSITORY                              TAG       IMAGE ID       CREATED        SIZE
+my-jenkins                              latest    66f177dee747   2 hours ago    470MB
+solenixwebapp                           2.0       e80294d384db   4 months ago   1.56GB
+stutishrivastava/solenixwebapp          latest    e80294d384db   4 months ago   1.56GB
+solenixservice                          2.0       9c98e81d218e   4 months ago   529MB
+stutishrivastava/solenixservice         latest    9c98e81d218e   4 months ago   529MB
+solenixservice                          1.0       083e98fb6658   4 months ago   529MB
+solenixwebapp                           1.0       083e98fb6658   4 months ago   529MB
+<none>                                  <none>    d34bcc65c310   4 months ago   529MB
+<none>                                  <none>    2a7db4eca9e4   4 months ago   1.51GB
+<none>                                  <none>    085ff9b391c5   4 months ago   529MB
+<none>                                  <none>    56c69807a8d8   4 months ago   1.51GB
+solenixapp                              1.0       565e479d0eed   4 months ago   996MB
+mydockerapp4                            1.0       68b459b6b0f0   4 months ago   524MB
+gcr.io/my-product-425411/mydockerapp4   1.0       68b459b6b0f0   4 months ago   524MB
+mydockerapp3                            1.0       2009e436ef5d   4 months ago   524MB
+mydockerapp2                            1.0       3cc55477d134   4 months ago   524MB
+mydockerapp1                            1.0       2a03fb66fe01   4 months ago   524MB
+myfirstdockerapp                        1.0       2a03fb66fe01   4 months ago   524MB
+myfirtstdockerimage                     1.0       2a03fb66fe01   4 months ago   524MB
+mongo                                   latest    2f732130b5c3   5 months ago   797MB
+rmohr/activemq                          latest    7c58d2d8d6af   6 years ago    569MB
+
+C:\WINDOWS\system32>docker rmi my-jenkins
+Error response from daemon: conflict: unable to remove repository reference "my-jenkins" (must force) - container c8350d4b290e is using its referenced image 66f177dee747
+
+C:\WINDOWS\system32>docker rmi my-jenkins
+Untagged: my-jenkins:latest
+Deleted: sha256:66f177dee747b0365629691e94b0b37c339a8b91ee80af0878c00e504ca54847
+
+C:\WINDOWS\system32>docker pull jenkins/jenkins:lts
+lts: Pulling from jenkins/jenkins
+cdd62bf39133: Already exists
+21f106ffc421: Already exists
+39df2c5808cf: Already exists
+d9d5ad5daae2: Already exists
+21d9152ebad0: Already exists
+ddc06df74615: Already exists
+bf388b3d4868: Already exists
+1f6fc1ff002b: Already exists
+276b7c1ccf38: Already exists
+d9ab3d4a2c85: Already exists
+ac000fcb71de: Already exists
+79eacf1576c1: Already exists
+Digest: sha256:429647d4688daa3ca2520fb771a391bae8efa1e4def824b32345f13dde223227
+Status: Downloaded newer image for jenkins/jenkins:lts
+docker.io/jenkins/jenkins:lts
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview jenkins/jenkins:lts
+
+C:\WINDOWS\system32>docker images
+REPOSITORY                              TAG       IMAGE ID       CREATED        SIZE
+jenkins/jenkins                         lts       bac101b69b63   3 weeks ago    470MB
+solenixwebapp                           2.0       e80294d384db   4 months ago   1.56GB
+stutishrivastava/solenixwebapp          latest    e80294d384db   4 months ago   1.56GB
+solenixservice                          2.0       9c98e81d218e   4 months ago   529MB
+stutishrivastava/solenixservice         latest    9c98e81d218e   4 months ago   529MB
+solenixwebapp                           1.0       083e98fb6658   4 months ago   529MB
+solenixservice                          1.0       083e98fb6658   4 months ago   529MB
+<none>                                  <none>    d34bcc65c310   4 months ago   529MB
+<none>                                  <none>    2a7db4eca9e4   4 months ago   1.51GB
+<none>                                  <none>    085ff9b391c5   4 months ago   529MB
+<none>                                  <none>    56c69807a8d8   4 months ago   1.51GB
+solenixapp                              1.0       565e479d0eed   4 months ago   996MB
+mydockerapp4                            1.0       68b459b6b0f0   4 months ago   524MB
+gcr.io/my-product-425411/mydockerapp4   1.0       68b459b6b0f0   4 months ago   524MB
+mydockerapp3                            1.0       2009e436ef5d   4 months ago   524MB
+mydockerapp2                            1.0       3cc55477d134   4 months ago   524MB
+mydockerapp1                            1.0       2a03fb66fe01   4 months ago   524MB
+myfirstdockerapp                        1.0       2a03fb66fe01   4 months ago   524MB
+myfirtstdockerimage                     1.0       2a03fb66fe01   4 months ago   524MB
+mongo                                   latest    2f732130b5c3   5 months ago   797MB
+rmohr/activemq                          latest    7c58d2d8d6af   6 years ago    569MB
+
+C:\WINDOWS\system32>openssl req -newkey rsa:2048 -nodes -keyout jenkins.key -x509 -days 365 -out jenkins.crt
+.....+.............+...+++++++++++++++++++++++++++++++++++++++*..........+...+...+....+...+...+++++++++++++++++++++++++++++++++++++++*..+.........+....+........+..........+............+..+....+..+....+...........+...+.+...+......+...........+..........+...+...+..+......+.+.....................+..+.......+.........+.....+.........+.............+..+.............+..+...+...............+...+....+..+.+...+..+.......+..+....+.........+.....+.+......+......+..+.............+..+.............+..+.......+...........+....+......+...+.....+....+........+............+......+..........+......+......+.........+.....+......+.......+...+.........+.....+......+...+.......+..+.+..+.........+....+.....+..........+.........+..+.+...+......+........+...+....+......+.........+......+........+......+.+...+..+.........+...+...............+......+......+.+..+.......+......+.....+....+...+..+...+......+...............+.........+.+..+.........+......+.......+.....+..........+.....+......+.+.....+.............+...+.....+.........+....+.........+..+....+...........+....+..+............+.++++++
+.......+..+...+.........+++++++++++++++++++++++++++++++++++++++*.+....+..+....+.....+....+.....+.+..+....+........+++++++++++++++++++++++++++++++++++++++*.....+.+......+..............+................+...+......+.....+...+......+.........+............+...+......++++++
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:DE
+State or Province Name (full name) [Some-State]:Hesse
+Locality Name (eg, city) []:eschborn
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Infy
+Organizational Unit Name (eg, section) []:BFS
+Common Name (e.g. server FQDN or YOUR name) []:Stuti
+Email Address []:shri.stuti2326@gmail.com
+
+C:\WINDOWS\system32>mkdir C:\JenkinsSSL
+
+C:\WINDOWS\system32>move jenkins.key C:\JenkinsSSL
+        1 file(s) moved.
+
+C:\WINDOWS\system32>move jenkins.crt C:\JenkinsSSL
+        1 file(s) moved.
+
+C:\WINDOWS\system32>docker run -d -p 8443:8443 -p 50000:50000 -v C:\Users\a5143522\Stuti:/var/jenkins_home -v C:\Users\a5143522\Stuti\jenkins_home\JenkinsSSL\jenkins.crt:/var/jenkins_home/jenkins.crt:ro -v C:\Users\a5143522\Stuti\jenkins_home\JenkinsSSL\jenkins.key:/var/jenkins_home/jenkins.key:ro -e JAVA_OPTS="-Djenkins.install.runSetupWizard=false" --name jenkins-secure jenkins/jenkins:lts
+
+
+docker run -d -p 8080:8080 -p 50000:50000 -v C:\Users\a5143522\Stuti:/var/jenkins_home --name jenkins-secure jenkins/jenkins:lts
+
+docker run -d -p 8080:8080 -p 50000:50000 -v C:\Users\a5143522\Stuti:/var/jenkins_home --name jenkins-secure jenkins/jenkins:lts
+
+
+C:\WINDOWS\system32>docker run -d -p 8080:8080 -p 50000:50000 -v C:\Users\a5143522\Stuti:/var/jenkins_home --name jenkins-secure jenkins/jenkins:lts
+a3d5029aaad97934b9668ec3c1fdd31695c35a8189505bc09de84b960b29c5be
+
+C:\WINDOWS\system32>docker ps
+CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                              NAMES
+a3d5029aaad9   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   21 seconds ago   Up 20 seconds   0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp   jenkins-secure
+
+C:\WINDOWS\system32>docker cp C:\Users\a5143522\Stuti\jenkins_home\plugin\github.hpi jenkins-secure:/var/jenkins_home/plugins/
+
+docker restart jenkins-secure
+
+docker cp C:\Users\a5143522\Stuti\jenkins_home\plugin\commons-lang3-api.hpi jenkins-secure:/var/jenkins_home/plugins/
+docker cp C:\Users\a5143522\Stuti\jenkins_home\plugin\credentials.hpi jenkins-secure:/var/jenkins_home/plugins/
+docker cp C:\Users\a5143522\Stuti\jenkins_home\plugin\display-url-api.hpi jenkins-secure:/var/jenkins_home/plugins/
+docker cp C:\Users\a5143522\Stuti\jenkins_home\plugin\git.hpi jenkins-secure:/var/jenkins_home/plugins/
+docker cp C:\Users\a5143522\Stuti\jenkins_home\plugin\github-api.hpi jenkins-secure:/var/jenkins_home/plugins/
+docker cp C:\Users\a5143522\Stuti\jenkins_home\plugin\instance-identity.hpi jenkins-secure:/var/jenkins_home/plugins/
+docker cp C:\Users\a5143522\Stuti\jenkins_home\plugin\okhttp-api.hpi jenkins-secure:/var/jenkins_home/plugins/
+docker cp C:\Users\a5143522\Stuti\jenkins_home\plugin\plain-credentials.hpi jenkins-secure:/var/jenkins_home/plugins/
+docker cp C:\Users\a5143522\Stuti\jenkins_home\plugin\scm-api.hpi jenkins-secure:/var/jenkins_home/plugins/
+docker cp C:\Users\a5143522\Stuti\jenkins_home\plugin\token-macro.hpi jenkins-secure:/var/jenkins_home/plugins/
+
+
+## Manually Install Plugin#
+curl -O https://ftp.halifax.rwth-aachen.de/jenkins/plugins/structs/338.v848422169819/structs.hpi
+
+docker cp structs.hpi jenkins-secure:/var/jenkins_home/plugins/structs.jpi
+
+docker restart jenkins-secure
+
+
+## Check Plugin
+docker exec -it jenkins-secure /bin/bash
+
+cd /var/jenkins_home/plugins
+
+ls -l
+
+rm /var/jenkins_home/plugins/structs.jpi.tmp
+
+
+
+#### Jenkins with war 
+Download Lts jenkins war from url https://www.jenkins.io/stable-rc/
+Go to http://<your-jenkins-url>/jnlpJars/jenkins-cli.jar and download the jenkins-cli.jar.
+
+java -jar jenkins.war
+
+
+keytool -list -v -keystore C:\Users\a5143522\Java\openjdk-17.0.12\lib\security\cacerts -storepass changeit -alias server-alias
+
+
+keytool -import -alias server-alias -keystore JRE_HOME\lib\security\cacerts -keypass mypassword -file certificate_file -storepass changeit
+
+C:\Users\a5143522\Stuti\jenkins_home\plugin>curl -O https://ftp.halifax.rwth-aachen.de/jenkins/plugins/structs/338.v848422169819/structs.hpi
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 43570  100 43570    0     0   127k      0 --:--:-- --:--:-- --:--:--  130k
+
+C:\Users\a5143522\Stuti\jenkins_home\plugin>
+
+C:\Users\a5143522\Stuti\jenkins_home\plugin>cp structs.hpi C:\Users\a5143522\.jenkins\plugins
+'cp' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\a5143522\Stuti\jenkins_home\plugin>
+
+C:\Users\a5143522\.jenkins\plugins
+
+
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin pipeline
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin github
+
+
+java -jar jenkins-cli.jar -s http://localhost:8080 -auth user:jenkins install-plugin pipeline
+
+
+java -jar jenkins-cli.jar -s http://localhost:8080 -auth user:jenkins install-plugin workflow-aggregator
+
+
+java -jar jenkins-cli.jar -s http://localhost:8080 -auth user:jenkins install-plugin workflow-job
+java -jar jenkins-cli.jar -s http://localhost:8080 -auth user:jenkins install-plugin workflow-cps
+java -jar jenkins-cli.jar -s http://localhost:8080 -auth user:jenkins install-plugin workflow-durable-task-step
+java -jar jenkins-cli.jar -s http://localhost:8080 -auth user:jenkins install-plugin workflow-multibranch
+java -jar jenkins-cli.jar -s http://localhost:8080 -auth user:jenkins install-plugin workflow-scm-step
+java -jar jenkins-cli.jar -s http://localhost:8080 -auth user:jenkins install-plugin pipeline-stage-view
+
+
+password changeit
+
+first download the cert from https://ftp.halifax.rwth-aachen.de/jenkins/plugins/script-security/1366.vd44b_49a_5c85c/  and then add
+keytool -importcert -file C:\Users\a5143522\Stuti\jenkins_home\ftp.halifax.rwth-aachen.de.crt -keystore "C:\Users\a5143522\Java\openjdk-17.0.12\lib\security\cacerts" -alias halifax-cert
+
+https://ftp.belnet.be/mirror/jenkins/plugins/docker-commons/
+keytool -importcert -file C:\Users\a5143522\Stuti\jenkins_home\ftp.belnet.be.crt -keystore "C:\Users\a5143522\Java\openjdk-17.0.12\lib\security\cacerts" -alias belnet1-cert
+
