@@ -1,6 +1,7 @@
 pipeline {
     agent any
     environment {
+        PATH = "${env.PATH};C:\\Users\\a5143522\\Maven\\apache-maven-3.9.6\\bin"
         DOCKER_COMPOSE_FILE = 'docker-compose.yml'
     }
     stages {
