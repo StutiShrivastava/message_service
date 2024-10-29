@@ -45,10 +45,12 @@ pipeline {
     post {
             // Job to be performed after executing the build job.
        always {
-             emailext from: "stuti.shri2308@gmail.com",
-             to: "stuti.shri2308@gmail.com",
-             subject: "Jenkins Build Information ${JOB_NAME}#${BUILD_NUMBER}",
-             body: "Information: The build ${BUILD_NUMBER} of ${JOB_NAME} is ${currentBuild.currentResult}"
+             //emailext from: "stuti.shri2308@gmail.com",
+             //to: "stuti.shri2308@gmail.com",
+             //subject: "Jenkins Build Information ${JOB_NAME}#${BUILD_NUMBER}",
+             //body: "Information: The build ${BUILD_NUMBER} of ${JOB_NAME} is ${currentBuild.currentResult}"
+
+             echo 'The build ${BUILD_NUMBER} of ${JOB_NAME} is ${currentBuild.currentResult}'
        }
 
     }
