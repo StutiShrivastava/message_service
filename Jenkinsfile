@@ -50,7 +50,7 @@ pipeline {
              //subject: "Jenkins Build Information ${JOB_NAME}#${BUILD_NUMBER}",
              //body: "Information: The build ${BUILD_NUMBER} of ${JOB_NAME} is ${currentBuild.currentResult}"
 
-             echo 'The build ${BUILD_NUMBER} of ${JOB_NAME} is ${currentBuild.currentResult}'
+             echo 'The build completed...'
        }
 
     }
