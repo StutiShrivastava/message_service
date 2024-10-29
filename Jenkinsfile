@@ -9,22 +9,23 @@ pipeline {
                 git 'https://github.com/StutiShrivastava/message_service.git'
             }
         }
-        stage('Build') {
-            steps {
-                // Run any tests
-                bat "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
-                echo 'Build completed...'
-            }
-        }
         stage('Test') {
                     steps {
                         script {
-                            // Build the image using Docker Compose
-                            //bat "docker-compose -f ${DOCKER_COMPOSE_FILE} build"
-                            echo 'Testing...'
+                            // Executing Unit Test
+                            echo 'Executing Test...'
+                            bat "mvn test"
                         }
                     }
         }
+        stage('Build & Deploy') {
+                    steps {
+                        // Build & Deploy
+                        echo 'Executing Build...'
+                        bat "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
+                        echo 'Build & Deployment Completed...'
+                    }
+                }
         stage('Push Image to Registry') {
             when {
                 expression {
@@ -34,23 +35,21 @@ pipeline {
             steps {
                 script {
                     // Tag and push the Docker image
+                    echo 'Push Application Image to DockerHub...'
                     bat "docker-compose -f ${DOCKER_COMPOSE_FILE} push"
-                    echo 'Push Image...'
                 }
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying application...'
-                // You can deploy the container or service if needed
-            }
-        }
     }
+
     post {
-        always {
-            // Bring down the Docker Compose services and clean up
-            bat "docker-compose -f ${DOCKER_COMPOSE_FILE} down"
-            echo 'Completed...'
-        }
+            // Job to be performed after executing the build job.
+       always {
+             emailext from: "stuti.shri2308@gmail.com",
+             to: "stuti.shri2308@gmail.com",
+             subject: "Jenkins Build Information ${JOB_NAME}#${BUILD_NUMBER}",
+             body: "Information: The build ${BUILD_NUMBER} of ${JOB_NAME} is ${currentBuild.currentResult}"
+       }
+
     }
 }
