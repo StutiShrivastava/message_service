@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        PATH = "${env.PATH};C:\\Users\\a5143522\\Maven\\apache-maven-3.9.6\\bin;C:\\Users\\a5143522\\Java\\openjdk-17.0.12\\bin"
-        JAVA_HOME = "C:\\Users\\a5143522\\Java\\openjdk-17.0.12\\bin"
+        PATH = "${env.PATH};C:\\Users\\a5143522\\Maven\\apache-maven-3.9.6\\bin"
+        JAVA_HOME = "C:\\Users\\a5143522\\Java\\openjdk-17.0.12"
         DOCKER_COMPOSE_FILE = 'docker-compose.yml'
     }
     stages {
