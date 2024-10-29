@@ -31,6 +31,10 @@ pipeline {
         stage('Push Image to Registry') {
             steps {
                 script {
+                    // Log in to Docker Hub
+                    withCredentials([usernamePassword(credentialsId: 'DockerCredentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        bat "docker login -u %DOCKER_USER% -p %DOCKER_PASS%"
+                    }
                     // Tag and push the Docker image
                     echo 'Push Application Image to DockerHub...'
                     bat "docker-compose -f ${DOCKER_COMPOSE_FILE} push"
