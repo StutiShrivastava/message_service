@@ -22,7 +22,7 @@ services:
     depends_on:
       - activemq
     ports:
-      - "8181:8181"  # Expose the application on port 8080
+      - "8181:8181"  # Expose the application on port 8181
     networks:
       - app-network
 
