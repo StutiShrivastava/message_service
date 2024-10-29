@@ -224,8 +224,8 @@ java -jar jenkins-cli.jar -s http://localhost:8080 -auth user:jenkins install-pl
 password changeit
 
 first download the cert from https://ftp.halifax.rwth-aachen.de/jenkins/plugins/script-security/1366.vd44b_49a_5c85c/  and then add
-keytool -importcert -file C:\Users\a5143522\Stuti\jenkins_home\ftp.halifax.rwth-aachen.de.crt -keystore "C:\Users\a5143522\Java\openjdk-17.0.12\lib\security\cacerts" -alias halifax-cert
+keytool -importcert -file C:\Users\a5143522\Stuti\jenkins_home\ftp.halifax.rwth-aachen.de.crt -keystore "C:\Users\a5143522\Java\openjdk-17.0.12\lib\security\cacerts" -alias halifax1-cert
 
 https://ftp.belnet.be/mirror/jenkins/plugins/docker-commons/
-keytool -importcert -file C:\Users\a5143522\Stuti\jenkins_home\ftp.belnet.be.crt -keystore "C:\Users\a5143522\Java\openjdk-17.0.12\lib\security\cacerts" -alias belnet1-cert
+keytool -importcert -file C:\Users\a5143522\Stuti\jenkins_home\ftp.belnet.be.crt -keystore "C:\Users\a5143522\Java\openjdk-17.0.12\lib\security\cacerts" -alias belnet2-cert
 
